@@ -2,12 +2,14 @@ package boot;
 
 public class Main {
 
-	public static <T> void main(String[] args) {
+	public static void main(String[] args) {
 		// asdads
-		Population<T> pop = new Population<T>();
+		Population pop = new Population();
 		pop.createAndGenerateIndividual(50);
 		
 		for(int loop = 0; loop < 20; loop++) {
+			//System.out.println("Loop: "+loop);
+			//System.out.println(pop.fittestIndividual().toString());
 			System.out.println(pop.fittestIndividual().fitness());
 			pop = pop.evolve();
 		}

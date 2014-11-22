@@ -1,23 +1,36 @@
 package boot;
 
-public class MyGene<T> extends Gene<T>{
+import java.util.Random;
 
+public class MyGene extends Gene<String>{
+	
 	@Override
 	public void mutation() {
-		// TODO Auto-generated method stub
-		
+		this.geneContent=this.getRandomCharacter()+"";
 	}
 
 	@Override
-	public int compareTo(T arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	String generateGene() {
+		String c=this.getRandomCharacter()+"";
+		return c;
 	}
 
 	@Override
-	T generateGene() {
-		// TODO Auto-generated method stub
-		return null;
+	public int compareTo(String arg) {
+		return this.geneContent.compareTo(arg);
+	}
+	
+	private char getRandomCharacter(){
+		Random r = new Random();
+		char c = (char)(r.nextInt(26) + 'a');
+		return c;
+	}
+
+	@Override
+	public MyGene getACopy() {
+		MyGene tmp = new MyGene();
+		tmp.geneContent=this.geneContent;
+		return tmp;
 	}
 
 }

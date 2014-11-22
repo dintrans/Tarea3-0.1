@@ -3,9 +3,9 @@ package boot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Population<T> {
+public class Population {
 	/** List of individual making the population */
-	private List<T> individuals;
+	private List<MyIndividual> individuals;
 	
 	/** Number of individuals that may form a tournament */
 	private final int TOURNAMENT_SIZE = 5;
@@ -14,10 +14,11 @@ public class Population<T> {
 	 * Create a list of individuals
 	 * @param size	number of individual to consider
 	 */
-	public void create(int size) {
-		individuals = new ArrayList<T>();
-		for(int i = 0; i < size; i++)
+	public void create(int numberOfIndividuals) {
+		individuals = new ArrayList<MyIndividual>();
+		for(int i = 0; i < numberOfIndividuals; i++){
 			individuals.add(new MyIndividual());
+		}
 	}
 	
 	/**
@@ -33,7 +34,7 @@ public class Population<T> {
 	 * Generate the genotype of each individual 
 	 */ 
 	private void generateGenotype() {
-		for(T i : individuals)
+		for(MyIndividual i : individuals)
 			i.generateGenes();
 	}
 	
@@ -44,20 +45,19 @@ public class Population<T> {
 	public Population evolve() {
 		Population newPopulation = new Population();
 		newPopulation.create(this.numberOfIndividuals());
-		if(this.shouldUseElistism()) 
-			newPopulation.individualAtPut(1, this.fittestIndividual());
-		
+		if(this.shouldUseElistism()){
+			newPopulation.individualAtPut(0, this.fittestIndividual());
+		}
 		int elitismOffset = this.shouldUseElistism()?1:0;
-		
-		//Loop iver the population size and create new individual with crossover
+		//Loop over the population size and create new individual with crossover
 		for(int index = elitismOffset; index < this.numberOfIndividuals(); index++) {
-			Individual newIndividual = this.tournamentSelection().crossOverWith(this.tournamentSelection());
+			MyIndividual newIndividual = (MyIndividual) this.tournamentSelection().crossOverWith(this.tournamentSelection()); //OJO, casteo feo, arreglar :(
 			newPopulation.individualAtPut(index, newIndividual);
 		}
-		
 		//Mutate population
-		for(int index = elitismOffset; index < this.numberOfIndividuals(); index++)
+		for(int index = elitismOffset; index < this.numberOfIndividuals(); index++){
 			newPopulation.individualAt(index).mutate();
+		}
 
 		return newPopulation;
 	}
@@ -66,12 +66,12 @@ public class Population<T> {
 	 * Pick randomly some individuals from the population, and pick the fittest individual 
 	 * @return the fittest individual from the subset of the population
 	 */
-	private Individual tournamentSelection() {
+	private MyIndividual tournamentSelection() {
 		Population newPopulation = new Population();
 		newPopulation.create(this.tournamentSize());
 		for(int i = 0; i < this.tournamentSize(); i++) {
 			int randomIndex = (int)(Math.random()*this.numberOfIndividuals());
-			newPopulation.individualAtPut(i, (this.individualAt(randomIndex)));
+			newPopulation.individualAtPut(i,this.individualAt(randomIndex));
 		}
 		return newPopulation.fittestIndividual();
 	}
@@ -89,7 +89,7 @@ public class Population<T> {
 	 * @param index			position of the individual
 	 * @param individual	individual to insert in the population
 	 */
-	private void individualAtPut(int index, Individual individual) {
+	private void individualAtPut(int index, MyIndividual individual) {
 		individuals.set(index, individual);
 	}
 
@@ -98,7 +98,7 @@ public class Population<T> {
 	 * @param index position of the individual
 	 * @return	individual at position index
 	 */
-	private Individual individualAt(int index) {
+	private MyIndividual individualAt(int index) {
 		return individuals.get(index);
 	}
 
@@ -106,9 +106,9 @@ public class Population<T> {
 	 * Return the fittest individual of the population
 	 * @return the fittest individual
 	 */
-	public Individual fittestIndividual() {
-		Individual fittest = individuals.get(0);
-		for(Individual current : individuals) {
+	public MyIndividual fittestIndividual() {
+		MyIndividual fittest = individualAt(0);
+		for(MyIndividual current : individuals) {
 			if(current.fitness() > fittest.fitness()) fittest = current;
 		}
 		return fittest;
