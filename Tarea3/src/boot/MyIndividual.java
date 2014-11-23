@@ -1,8 +1,10 @@
 package boot;
 
-//import java.util.ArrayList;
-//import java.util.List;
-
+/**
+ * Clase que guarda individuos (palabras) para el algoritmo genetico de proximidad de palabras
+ * @author dintrans(at)dcc
+ * @version 0.1.3
+ */
 public class MyIndividual extends Individual<MyGene>{
 	
 	//private int amountOFGenes=8;
@@ -11,6 +13,12 @@ public class MyIndividual extends Individual<MyGene>{
 	
 	private String fittestWord="dintrans";
 	
+	/**
+	 * Crea un individuo default con los siguientes parametros:
+	 * Numero de genes: 8
+	 * Probabilidad de mutación: 1.5%
+	 * Proporcion de cruce: 50/50
+	 */
 	public MyIndividual() {
 		super(8,0.015,0.5);
 	}
@@ -38,6 +46,10 @@ public class MyIndividual extends Individual<MyGene>{
 		return k;
 	}
 	
+	/**
+	 * Genera un string representativo del individuo
+	 * @return String representativo del individuo
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

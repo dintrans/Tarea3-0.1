@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Clase que pobla el algoritmo genético de proximidad de palabras y otorga funciones evolutivas
+ * @author dintrans(at)dcc
+ * @version 0.1.3
+ */
 public class Population {
 	/** List of individual making the population */
 	private List<MyIndividual> individuals;
@@ -16,8 +21,8 @@ public class Population {
 	private final int TOURNAMENT_SIZE = 5;
 	
 	/** 
-	 * Create a list of individuals
-	 * @param size	number of individual to consider
+	 * Crea una lista de individuos
+	 * @param numberOfIndividuals numero de individuos que tendrá la lista
 	 */
 	public void create(int numberOfIndividuals) {
 		individuals = new ArrayList<MyIndividual>();
@@ -27,7 +32,7 @@ public class Population {
 	}
 	
 	/**
-	 * Create individuals and generate genotype for each of them
+	 * Crea individuos y genera sus genotipos para cada uno
 	 * @param size	size of the population
 	 */
 	public void createAndGenerateIndividual(int size) {
@@ -44,8 +49,8 @@ public class Population {
 	}
 	
 	/**
-	 * Create a new population, fitter to solve the problem
-	 * @return a new population with better individuals
+	 * Crea una nueva población a partir de la evolución de a actual
+	 * @return una nueva población más evolucionada
 	 */
 	public Population evolve() {
 		Population newPopulation = new Population();
@@ -112,15 +117,16 @@ public class Population {
 	}
 
 	/** 
-	 * Return the fittest individual of the population
-	 * @return the fittest individual
+	 * Retorna el individuo mas apto de la población
+	 * @return el individuo mas apto
 	 */
 	public MyIndividual fittestIndividual() {
 		return this.individualAt(0);
 	}
 	
 	/**
-	 * @return the size of the population
+	 * Retorna el tamaño de la población
+	 * @return El tamaño de la población
 	 */
 	public int numberOfIndividuals() {
 		return individuals.size();
