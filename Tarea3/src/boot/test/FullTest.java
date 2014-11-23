@@ -9,20 +9,17 @@ import org.junit.Test;
 import boot.Main;
 
 /**
- * Unit Test para la creación de 
+ * Unit Test para la ejecución de un algoritmo genético de búsqueda de palabras.
  * @author dintrans(at)dcc
  *
  */
 public class FullTest {
 
-//	/**
-//	 * @throws java.lang.Exception
-//	 */
-//	@Before
-//	public void setUp() throws Exception {
-//		Main.execute();
-//	}
-
+	/**
+	 * Ejecuta un test probabilístico.
+	 * Para ejecuciones de tan sólo 20 ciclos vitales, los genes logran ajustarse en mas del 80% de los casos
+	 * Eso se considera aceptable, pero puede fallar por muy mala suerte.
+	 */
 	@Test
 	public void ProbabilisticTest() {
 		int k=0;
@@ -34,7 +31,7 @@ public class FullTest {
 				if(a.charAt(i)==b.charAt(i))k++;
 			}
 		}
-		assertTrue((k/400.0)>0.8); //los genes logran ajustarse, en sólo 20 ciclos, en más de un 80% de los casos. Eso se considera aceptable.
+		assertTrue((k/400.0)>0.8);
 	}
 
 }
