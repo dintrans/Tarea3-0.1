@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Clase que pobla el algoritmo genético de proximidad de palabras y otorga funciones evolutivas
+ * Clase que pobla el algoritmo genético de proximidad de palabras y otorga funciones evolutivas. Se pudo refactorizar, pero no se hizo
  * @author dintrans(at)dcc
  * @version 0.1.3
  */
