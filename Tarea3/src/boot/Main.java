@@ -10,7 +10,7 @@ public class Main {
 		for(int loop = 0; loop < 20; loop++) {
 			//System.out.println("Loop: "+loop);
 			//System.out.println(pop.fittestIndividual().toString());
-			System.out.println(pop.fittestIndividual().fitness());
+			//System.out.println(pop.fittestIndividual().fitness());
 			pop = pop.evolve();
 		}
 		System.out.println(pop.fittestIndividual().toString());

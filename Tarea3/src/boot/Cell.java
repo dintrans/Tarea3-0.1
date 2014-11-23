@@ -16,8 +16,9 @@ public class Cell extends Gene<int[]>{
 
 	@Override
 	public Gene<int[]> getACopy() {
-		// TODO Auto-generated method stub
-		return null;
+		Cell tmp = new Cell();
+		tmp.geneContent=this.geneContent;
+		return tmp;
 	}
 
 }

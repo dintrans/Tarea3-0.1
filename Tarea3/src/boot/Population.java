@@ -1,11 +1,16 @@
 package boot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Population {
 	/** List of individual making the population */
 	private List<MyIndividual> individuals;
+	
+	private boolean elite = true;
+	
+	private int eliteSize = 1;
 	
 	/** Number of individuals that may form a tournament */
 	private final int TOURNAMENT_SIZE = 5;
@@ -45,10 +50,13 @@ public class Population {
 	public Population evolve() {
 		Population newPopulation = new Population();
 		newPopulation.create(this.numberOfIndividuals());
-		if(this.shouldUseElistism()){
-			newPopulation.individualAtPut(0, this.fittestIndividual());
+		Collections.sort(this.individuals);
+		if(this.elite){
+			for(int i=0;i<this.eliteSize;i++){
+				newPopulation.individualAtPut(i, this.individualAt(i));
+			}
 		}
-		int elitismOffset = this.shouldUseElistism()?1:0;
+		int elitismOffset = this.elite?this.eliteSize:0;
 		//Loop over the population size and create new individual with crossover
 		for(int index = elitismOffset; index < this.numberOfIndividuals(); index++) {
 			MyIndividual newIndividual = (MyIndividual) this.tournamentSelection().crossOverWith(this.tournamentSelection()); //OJO, casteo feo, arreglar :(
@@ -58,7 +66,7 @@ public class Population {
 		for(int index = elitismOffset; index < this.numberOfIndividuals(); index++){
 			newPopulation.individualAt(index).mutate();
 		}
-
+		Collections.sort(newPopulation.individuals);
 		return newPopulation;
 	}
 
@@ -73,6 +81,7 @@ public class Population {
 			int randomIndex = (int)(Math.random()*this.numberOfIndividuals());
 			newPopulation.individualAtPut(i,this.individualAt(randomIndex));
 		}
+		Collections.sort(newPopulation.individuals);
 		return newPopulation.fittestIndividual();
 	}
 
@@ -107,18 +116,7 @@ public class Population {
 	 * @return the fittest individual
 	 */
 	public MyIndividual fittestIndividual() {
-		MyIndividual fittest = individualAt(0);
-		for(MyIndividual current : individuals) {
-			if(current.fitness() > fittest.fitness()) fittest = current;
-		}
-		return fittest;
-	}
-
-	/**
-	 * Should an elite be used in the algorithm?  
-	 */
-	private boolean shouldUseElistism() {
-		return true;
+		return this.individualAt(0);
 	}
 	
 	/**

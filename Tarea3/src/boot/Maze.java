@@ -19,15 +19,14 @@ public class Maze extends Individual<Cell>{
 	}
 
 	@Override
-	int fitness() {
+	protected int fitness() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
