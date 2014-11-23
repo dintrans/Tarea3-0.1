@@ -34,10 +34,6 @@ public class MyIndividual extends Individual<MyGene>{
 	protected int fitness() {
 		int k=0;
 		for(int index = 0; index < this.numberOfGenes; index++){
-			//System.out.println(index);
-			if(this.genes.size()==0){
-				continue;
-			}
 			if(this.genes.get(index).compareTo(fittestWord.charAt(index)+"")==0){
 				k++;
 			}

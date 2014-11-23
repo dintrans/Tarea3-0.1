@@ -7,6 +7,7 @@ package boot;
  */
 public class Main {
 
+	static public Population pop;
 	/**
 	 * Ejecuta un algoritmo genético para la proximidad de palabras
 	 * @param args Pila de variables de ejecución de la consola
@@ -21,7 +22,7 @@ public class Main {
 	 * @return Una poblacion evolucionada
 	 */
 	public static Population execute() {
-		Population pop = new Population();
+		pop = new Population();
 		pop.createAndGenerateIndividual(50);
 		
 		for(int loop = 0; loop < 20; loop++) {

@@ -35,4 +35,10 @@ public class Cell extends Gene<int[]>{
 		return tmp;
 	}
 
+	@Override
+	void mutation() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

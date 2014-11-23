@@ -16,9 +16,7 @@ public abstract class Gene<T> implements Comparable<T>{
 	public abstract int compareTo(T arg0);
 	abstract T generateGene();
 	
-	void mutation(){
-		this.geneContent=this.generateGene();
-	}
+	abstract void mutation();
 	
 	/**
 	 * Constructor de un gen seteado con el generador de genes definido

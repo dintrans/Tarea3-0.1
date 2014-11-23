@@ -24,9 +24,9 @@ public class Maze extends Individual<Cell>{
 
 	@Override
 	void mutate() {
-		for(int index = 0; index < this.numberOfGenes; index++)
-			if(Math.random() < this.mutationRate)
-				genes.get(index).mutation();
+//		for(int index = 0; index < this.numberOfGenes; index++)
+//			if(Math.random() < this.mutationRate)
+//				genes.get(index).mutation();
 	}
 
 	@Override
