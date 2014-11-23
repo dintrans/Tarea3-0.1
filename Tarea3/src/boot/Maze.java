@@ -8,7 +8,6 @@ public class Maze extends Individual<Cell>{
 	
 	public Maze() {
 		super(100, 0.015, 0.5);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -20,7 +19,7 @@ public class Maze extends Individual<Cell>{
 
 	@Override
 	protected int fitness() {
-		// TODO Auto-generated method stub
+		// TODO Calcular proximidad a la salida?
 		return 0;
 	}
 
